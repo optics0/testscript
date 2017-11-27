@@ -132,7 +132,7 @@ public class LeanFtTest extends UnitTestClassBase {
 
 
             //if (!display_text.contains("CREATE ACCOUNT")) {
-              if (!display_text.contains("CREATE AN ACCOUNT")) {
+              if (!display_text.contains("CREATE ACCOUNT")) {
 
              Assert.fail("CREATE AN ACCOUNT is not displayed the displayed text is " + display_text);
         }
