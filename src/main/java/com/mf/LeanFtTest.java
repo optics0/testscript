@@ -58,19 +58,19 @@ public class LeanFtTest extends UnitTestClassBase {
 
         browser.navigate("http://nimbusserver.aos.com:8000/#/");
 
-        try {
-
-            browser.describe(Link.class, new LinkDescription.Builder()
+        browser.describe(Link.class, new LinkDescription.Builder()
                     .innerText("SPEAKERS Shop Now ")
                     .tagName("DIV").build()).click();
 
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(4);
 
             browser.describe(Image.class, new ImageDescription.Builder()
                     .alt("")
                     .tagName("IMG")
                     .type(com.hp.lft.sdk.web.ImageType.NORMAL)
                     .index(3).build()).exists();
+
+            TimeUnit.SECONDS.sleep(2);
 
             browser.describe(Image.class, new ImageDescription.Builder()
                     .alt("")
@@ -133,10 +133,10 @@ public class LeanFtTest extends UnitTestClassBase {
 
             System.out.println("Displayed text is  " + display_text);
 
-            if (!display_text.equalsIgnoreCase("CREATE ACCOUNTS")){
 
-           // if (!display_text.contains("CdfsdREATE ACCfdsdfsOUNTS")) {
-                //System.out.println("Displayed text is"  + display_text);
+
+            if (!display_text.contains("CREATE ACCOUNT")) {
+
                 Reporter.reportEvent("Verify_SearchSuggestionsAreOpenUponUserInput", "Failed during validation", Status.Failed);
                 //Assert.fail("MSN page is not displayed Displayed text is  " + display_text);
             }
@@ -171,20 +171,7 @@ public class LeanFtTest extends UnitTestClassBase {
 
         }
 
-        catch (AssertionFailedError e)
-        //catch (AssertionError e)
-        // Use a ReportEvent step to add details to the run report if the validation fails.
-        {
-            Reporter.reportEvent("Verify_SearchSuggestionsAreOpenUponUserInput", "Failed during validation", Status.Failed);
 
-            e.printStackTrace();
-
-        }
-
-        finally {
-            browser.close();
-        }
-    }
 }
 
 
