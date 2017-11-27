@@ -29,7 +29,6 @@ public class LeanFtTest extends UnitTestClassBase {
         instance = new LeanFtTest();
         globalSetup(LeanFtTest.class);
 
-
     }
 
     @AfterClass
@@ -56,52 +55,122 @@ public class LeanFtTest extends UnitTestClassBase {
         Browser browser;
         browser = BrowserFactory.launch(BrowserType.CHROME);
 
+        try {
+
         browser.navigate("http://nimbusserver.aos.com:8000/#/");
 
+        browser.sync();
+
         browser.describe(Link.class, new LinkDescription.Builder()
-                    .innerText("SPEAKERS Shop Now ")
-                    .tagName("DIV").build()).click();
+                .innerText("SPEAKERS Shop Now ")
+                .tagName("DIV").build()).click();
 
-            TimeUnit.SECONDS.sleep(4);
+        browser.sync();
 
-            browser.describe(Image.class, new ImageDescription.Builder()
-                    .alt("")
-                    .tagName("IMG")
-                    .type(com.hp.lft.sdk.web.ImageType.NORMAL)
-                    .index(3).build()).exists();
 
-            TimeUnit.SECONDS.sleep(2);
+        browser.describe(Image.class, new ImageDescription.Builder()
+                .alt("")
+                .tagName("IMG")
+                .type(com.hp.lft.sdk.web.ImageType.NORMAL)
+                .index(3).build()).click();
 
-            browser.describe(Image.class, new ImageDescription.Builder()
-                    .alt("")
-                    .tagName("IMG")
-                    .type(com.hp.lft.sdk.web.ImageType.NORMAL)
-                    .index(3).build()).click();
+        browser.sync();
 
-            TimeUnit.SECONDS.sleep(2);
+        browser.describe(WebElement.class, new WebElementDescription.Builder()
+                .accessibilityName("")
+                .className("productColor ng-scope")
+                .innerText("")
+                .tagName("SPAN")
+                .index(1).build()).click();
 
-            browser.describe(WebElement.class, new WebElementDescription.Builder()
-                    .accessibilityName("")
-                    .className("productColor ng-scope")
-                    .innerText("")
-                    .tagName("SPAN")
-                    .index(1).build()).click();
+        browser.sync();
 
-            TimeUnit.SECONDS.sleep(2);
+        browser.describe(WebElement.class, new WebElementDescription.Builder()
+                .className("plus")
+                .innerText("")
+                .tagName("DIV").build()).click();
 
-            browser.describe(WebElement.class, new WebElementDescription.Builder()
-                    .className("plus")
-                    .innerText("")
-                    .tagName("DIV").build()).click();
+        browser.sync();
 
-            TimeUnit.SECONDS.sleep(2);
+        browser.describe(Button.class, new ButtonDescription.Builder()
+                .buttonType("submit")
+                .name("ADD TO CART")
+                .tagName("BUTTON").build()).click();
 
-            browser.describe(Button.class, new ButtonDescription.Builder()
-                    .buttonType("submit")
-                    .name("ADD TO CART")
-                    .tagName("BUTTON").build()).click();
+        browser.sync();
 
-            TimeUnit.SECONDS.sleep(2);
+        browser.describe(Link.class, new LinkDescription.Builder()
+                .accessibilityName("")
+                .innerText("2 ")
+                .role("link")
+                .tagName("A")
+                .index(1).build()).click();
+
+        browser.sync();
+
+        browser.describe(Button.class, new ButtonDescription.Builder()
+                .buttonType("submit")
+                .name("CHECKOUT ($89.98)")
+                .tagName("BUTTON").build()).click();
+
+        browser.sync();
+
+        browser.describe(Button.class, new ButtonDescription.Builder()
+                .buttonType("button")
+                .name("REGISTRATION")
+                .tagName("BUTTON").build()).click();
+
+        browser.sync();
+
+        String display_text = browser.describe(WebElement.class, new WebElementDescription.Builder()
+                .tagName("H3")
+                .xpath("//SECTION[@id=\"registerPage\"]/ARTICLE[1]/H3[1]").build()).getOuterText();
+
+
+        System.out.println("Displayed text is  " + display_text);
+
+
+
+            //if (!display_text.contains("CREATE ACCOUNT")) {
+              if (!display_text.contains("CREATE AN ACCOUNT")) {
+
+             Assert.fail("CREATE AN ACCOUNT is not displayed the displayed text is " + display_text);
+        }
+
+        browser.sync();
+
+        browser.describe(Link.class, new LinkDescription.Builder()
+                .accessibilityName("")
+                .innerText("2 ")
+                .role("link")
+                .tagName("A")
+                .index(1).build()).click();
+
+        browser.sync();
+
+        browser.describe(WebElement.class, new WebElementDescription.Builder()
+                .accessibilityName("")
+                .className("removeProduct iconCss iconX")
+                .innerText("")
+                .tagName("DIV")
+                .index(0).build()).click();
+
+        browser.sync();
+
+        browser.describe(Link.class, new LinkDescription.Builder()
+                .innerText("dvantage DEMO ")
+                .tagName("A").build()).click();
+
+    }
+            catch (AssertionError e)
+        {
+            // Adds a step to the results report on failure.
+            Reporter.reportEvent("Verify_Create_Account", "Validation Failed CREATE AN ACCOUNT is not displayed ", Status.Failed, e);
+            throw e;
+        }
+ finally
+        {
+            browser.sync();
 
             browser.describe(Link.class, new LinkDescription.Builder()
                     .accessibilityName("")
@@ -110,47 +179,7 @@ public class LeanFtTest extends UnitTestClassBase {
                     .tagName("A")
                     .index(1).build()).click();
 
-            TimeUnit.SECONDS.sleep(2);
-
-            browser.describe(Button.class, new ButtonDescription.Builder()
-                    .buttonType("submit")
-                    .name("CHECKOUT ($89.98)")
-                    .tagName("BUTTON").build()).click();
-
-            TimeUnit.SECONDS.sleep(2);
-
-            browser.describe(Button.class, new ButtonDescription.Builder()
-                    .buttonType("button")
-                    .name("REGISTRATION")
-                    .tagName("BUTTON").build()).click();
-
-            TimeUnit.SECONDS.sleep(2);
-
-            String display_text = browser.describe(WebElement.class, new WebElementDescription.Builder()
-                    .tagName("H3")
-                    .xpath("//SECTION[@id=\"registerPage\"]/ARTICLE[1]/H3[1]").build()).getOuterText();
-
-
-            System.out.println("Displayed text is  " + display_text);
-
-
-
-            if (!display_text.contains("CREATE ACCOUNT")) {
-
-                Reporter.reportEvent("Verify_SearchSuggestionsAreOpenUponUserInput", "Failed during validation", Status.Failed);
-                //Assert.fail("MSN page is not displayed Displayed text is  " + display_text);
-            }
-
-            TimeUnit.SECONDS.sleep(2);
-
-            browser.describe(Link.class, new LinkDescription.Builder()
-                    .accessibilityName("")
-                    .innerText("2 ")
-                    .role("link")
-                    .tagName("A")
-                    .index(1).build()).click();
-
-            TimeUnit.SECONDS.sleep(2);
+            browser.sync();
 
             browser.describe(WebElement.class, new WebElementDescription.Builder()
                     .accessibilityName("")
@@ -159,14 +188,12 @@ public class LeanFtTest extends UnitTestClassBase {
                     .tagName("DIV")
                     .index(0).build()).click();
 
-            TimeUnit.SECONDS.sleep(2);
+            browser.sync();
 
-            browser.describe(Link.class, new LinkDescription.Builder()
-                    .innerText("dvantage DEMO ")
-                    .tagName("A").build()).click();
+            browser.close();
+        }
 
-
-          //  Reporter.reportEvent("Verify_SearchSuggestionsAreOpenUponUserInput", "Failed during validation", Status.Failed);
+        //  Reporter.reportEvent("Verify_SearchSuggestionsAreOpenUponUserInput", "Failed during validation", Status.Failed);
 
 
         }
