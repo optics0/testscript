@@ -2,12 +2,14 @@ package com.mf;
 
 import static org.junit.Assert.*;
 
+import junit.framework.AssertionFailedError;
 import org.junit.*;
 import com.hp.lft.sdk.*;
 import com.hp.lft.sdk.web.*;
 import com.hp.lft.report.*;
 
 
+import com.hp.lft.report.Reporter.*;
 import com.hp.lft.verifications.*;
 
 import unittesting.*;
@@ -39,7 +41,6 @@ public class LeanFtTest extends UnitTestClassBase {
     public void setUp() throws Exception {
 
 
-
     }
 
 
@@ -47,118 +48,145 @@ public class LeanFtTest extends UnitTestClassBase {
     public void tearDown() throws Exception {
 
 
-
     }
 
     @Test
-    public void test() throws GeneralLeanFtException, InterruptedException {
+    public void test() throws Exception {
 
         Browser browser;
         browser = BrowserFactory.launch(BrowserType.CHROME);
 
         browser.navigate("http://nimbusserver.aos.com:8000/#/");
 
-        browser.describe(Link.class, new LinkDescription.Builder()
-                .innerText("SPEAKERS Shop Now ")
-                .tagName("DIV").build()).click();
+        try {
 
-        TimeUnit.SECONDS.sleep(2);
+            browser.describe(Link.class, new LinkDescription.Builder()
+                    .innerText("SPEAKERS Shop Now ")
+                    .tagName("DIV").build()).click();
 
-        browser.describe(Image.class, new ImageDescription.Builder()
-                .alt("")
-                .tagName("IMG")
-                .type(com.hp.lft.sdk.web.ImageType.NORMAL)
-                .index(3).build()).click();
+            TimeUnit.SECONDS.sleep(2);
 
-        TimeUnit.SECONDS.sleep(2);
+            browser.describe(Image.class, new ImageDescription.Builder()
+                    .alt("")
+                    .tagName("IMG")
+                    .type(com.hp.lft.sdk.web.ImageType.NORMAL)
+                    .index(3).build()).exists();
 
-        browser.describe(WebElement.class, new WebElementDescription.Builder()
-                .accessibilityName("")
-                .className("productColor ng-scope")
-                .innerText("")
-                .tagName("SPAN")
-                .index(1).build()).click();
+            browser.describe(Image.class, new ImageDescription.Builder()
+                    .alt("")
+                    .tagName("IMG")
+                    .type(com.hp.lft.sdk.web.ImageType.NORMAL)
+                    .index(3).build()).click();
 
-        TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(2);
 
-        browser.describe(WebElement.class, new WebElementDescription.Builder()
-                .className("plus")
-                .innerText("")
-                .tagName("DIV").build()).click();
+            browser.describe(WebElement.class, new WebElementDescription.Builder()
+                    .accessibilityName("")
+                    .className("productColor ng-scope")
+                    .innerText("")
+                    .tagName("SPAN")
+                    .index(1).build()).click();
 
-        TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(2);
 
-        browser.describe(Button.class, new ButtonDescription.Builder()
-                .buttonType("submit")
-                .name("ADD TO CART")
-                .tagName("BUTTON").build()).click();
+            browser.describe(WebElement.class, new WebElementDescription.Builder()
+                    .className("plus")
+                    .innerText("")
+                    .tagName("DIV").build()).click();
 
-        TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(2);
 
-        browser.describe(Link.class, new LinkDescription.Builder()
-                .accessibilityName("")
-                .innerText("2 ")
-                .role("link")
-                .tagName("A")
-                .index(1).build()).click();
+            browser.describe(Button.class, new ButtonDescription.Builder()
+                    .buttonType("submit")
+                    .name("ADD TO CART")
+                    .tagName("BUTTON").build()).click();
 
-        TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(2);
 
-        browser.describe(Button.class, new ButtonDescription.Builder()
-                .buttonType("submit")
-                .name("CHECKOUT ($89.98)")
-                .tagName("BUTTON").build()).click();
+            browser.describe(Link.class, new LinkDescription.Builder()
+                    .accessibilityName("")
+                    .innerText("2 ")
+                    .role("link")
+                    .tagName("A")
+                    .index(1).build()).click();
 
-        TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(2);
 
-        browser.describe(Button.class, new ButtonDescription.Builder()
-                .buttonType("button")
-                .name("REGISTRATION")
-                .tagName("BUTTON").build()).click();
+            browser.describe(Button.class, new ButtonDescription.Builder()
+                    .buttonType("submit")
+                    .name("CHECKOUT ($89.98)")
+                    .tagName("BUTTON").build()).click();
 
-        TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(2);
 
-        String display_text=browser.describe(WebElement.class, new WebElementDescription.Builder()
-                .tagName("H3")
-                .xpath("//SECTION[@id=\"registerPage\"]/ARTICLE[1]/H3[1]").build()).getOuterText();
+            browser.describe(Button.class, new ButtonDescription.Builder()
+                    .buttonType("button")
+                    .name("REGISTRATION")
+                    .tagName("BUTTON").build()).click();
+
+            TimeUnit.SECONDS.sleep(2);
+
+            String display_text = browser.describe(WebElement.class, new WebElementDescription.Builder()
+                    .tagName("H3")
+                    .xpath("//SECTION[@id=\"registerPage\"]/ARTICLE[1]/H3[1]").build()).getOuterText();
 
 
-        System.out.println("Displayed text is  "  + display_text);
+            System.out.println("Displayed text is  " + display_text);
 
-        if (!display_text.contains("CREATE ACCOUNT")) {
-            //System.out.println("Displayed text is"  + display_text);
-            Assert.fail("MSN page is not displayed Displayed text is  "  + display_text);
+            if (!display_text.equalsIgnoreCase("CREATE ACCOUNTS")){
+
+           // if (!display_text.contains("CdfsdREATE ACCfdsdfsOUNTS")) {
+                //System.out.println("Displayed text is"  + display_text);
+                Reporter.reportEvent("Verify_SearchSuggestionsAreOpenUponUserInput", "Failed during validation", Status.Failed);
+                //Assert.fail("MSN page is not displayed Displayed text is  " + display_text);
+            }
+
+            TimeUnit.SECONDS.sleep(2);
+
+            browser.describe(Link.class, new LinkDescription.Builder()
+                    .accessibilityName("")
+                    .innerText("2 ")
+                    .role("link")
+                    .tagName("A")
+                    .index(1).build()).click();
+
+            TimeUnit.SECONDS.sleep(2);
+
+            browser.describe(WebElement.class, new WebElementDescription.Builder()
+                    .accessibilityName("")
+                    .className("removeProduct iconCss iconX")
+                    .innerText("")
+                    .tagName("DIV")
+                    .index(0).build()).click();
+
+            TimeUnit.SECONDS.sleep(2);
+
+            browser.describe(Link.class, new LinkDescription.Builder()
+                    .innerText("dvantage DEMO ")
+                    .tagName("A").build()).click();
+
+
+          //  Reporter.reportEvent("Verify_SearchSuggestionsAreOpenUponUserInput", "Failed during validation", Status.Failed);
+
+
         }
 
-        TimeUnit.SECONDS.sleep(2);
+        catch (AssertionFailedError e)
+        //catch (AssertionError e)
+        // Use a ReportEvent step to add details to the run report if the validation fails.
+        {
+            Reporter.reportEvent("Verify_SearchSuggestionsAreOpenUponUserInput", "Failed during validation", Status.Failed);
 
-        browser.describe(Link.class, new LinkDescription.Builder()
-                .accessibilityName("")
-                .innerText("2 ")
-                .role("link")
-                .tagName("A")
-                .index(1).build()).click();
+            e.printStackTrace();
 
-        TimeUnit.SECONDS.sleep(2);
+        }
 
-        browser.describe(WebElement.class, new WebElementDescription.Builder()
-                .accessibilityName("")
-                .className("removeProduct iconCss iconX")
-                .innerText("")
-                .tagName("DIV")
-                .index(0).build()).click();
-
-        TimeUnit.SECONDS.sleep(2);
-
-        browser.describe(Link.class, new LinkDescription.Builder()
-                .innerText("dvantage DEMO ")
-                .tagName("A").build()).click();
-
-
-
-        browser.close();
+        finally {
+            browser.close();
+        }
     }
-
-
-
 }
+
+
+
+
