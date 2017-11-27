@@ -132,15 +132,6 @@ public class LeanFtTest extends UnitTestClassBase {
 
         TimeUnit.SECONDS.sleep(2);
 
-        browser.describe(WebElement.class, new WebElementDescription.Builder()
-                .accessibilityName("")
-                .className("")
-                .innerText("")
-                .tagName("DIV")
-                .index(6).build()).click();
-
-        TimeUnit.SECONDS.sleep(2);
-
         browser.describe(Link.class, new LinkDescription.Builder()
                 .accessibilityName("")
                 .innerText("2 ")
