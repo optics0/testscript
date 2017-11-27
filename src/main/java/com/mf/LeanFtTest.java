@@ -62,7 +62,7 @@ public class LeanFtTest extends UnitTestClassBase {
                 .innerText("SPEAKERS Shop Now ")
                 .tagName("DIV").build()).click();
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
 
         browser.describe(Image.class, new ImageDescription.Builder()
                 .alt("")
@@ -70,7 +70,7 @@ public class LeanFtTest extends UnitTestClassBase {
                 .type(com.hp.lft.sdk.web.ImageType.NORMAL)
                 .index(3).build()).click();
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
 
         browser.describe(WebElement.class, new WebElementDescription.Builder()
                 .accessibilityName("")
@@ -79,21 +79,21 @@ public class LeanFtTest extends UnitTestClassBase {
                 .tagName("SPAN")
                 .index(1).build()).click();
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
 
         browser.describe(WebElement.class, new WebElementDescription.Builder()
                 .className("plus")
                 .innerText("")
                 .tagName("DIV").build()).click();
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
 
         browser.describe(Button.class, new ButtonDescription.Builder()
                 .buttonType("submit")
                 .name("ADD TO CART")
                 .tagName("BUTTON").build()).click();
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
 
         browser.describe(Link.class, new LinkDescription.Builder()
                 .accessibilityName("")
@@ -102,21 +102,21 @@ public class LeanFtTest extends UnitTestClassBase {
                 .tagName("A")
                 .index(1).build()).click();
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
 
         browser.describe(Button.class, new ButtonDescription.Builder()
                 .buttonType("submit")
                 .name("CHECKOUT ($89.98)")
                 .tagName("BUTTON").build()).click();
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
 
         browser.describe(Button.class, new ButtonDescription.Builder()
                 .buttonType("button")
                 .name("REGISTRATION")
                 .tagName("BUTTON").build()).click();
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
 
         String display_text=browser.describe(WebElement.class, new WebElementDescription.Builder()
                 .tagName("H3")
@@ -130,7 +130,7 @@ public class LeanFtTest extends UnitTestClassBase {
             Assert.fail("MSN page is not displayed Displayed text is  "  + display_text);
         }
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
 
         browser.describe(WebElement.class, new WebElementDescription.Builder()
                 .accessibilityName("")
@@ -139,7 +139,7 @@ public class LeanFtTest extends UnitTestClassBase {
                 .tagName("DIV")
                 .index(6).build()).click();
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
 
         browser.describe(Link.class, new LinkDescription.Builder()
                 .accessibilityName("")
@@ -148,7 +148,7 @@ public class LeanFtTest extends UnitTestClassBase {
                 .tagName("A")
                 .index(1).build()).click();
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
 
         browser.describe(WebElement.class, new WebElementDescription.Builder()
                 .accessibilityName("")
@@ -157,7 +157,7 @@ public class LeanFtTest extends UnitTestClassBase {
                 .tagName("DIV")
                 .index(0).build()).click();
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
 
         browser.describe(Link.class, new LinkDescription.Builder()
                 .innerText("dvantage DEMO ")
