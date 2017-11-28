@@ -151,7 +151,7 @@ public class LeanFtTest extends UnitTestClassBase {
         System.out.println("Displayed text is  " + display_text);
 
             //if (!display_text.contains("CREATE ACCOUNT")) {
-              if (!display_text.contains("Your shopping cart is empty")) {
+              if (!display_text.contains("Your AOS shopping cart is empty")) {
 
              Assert.fail("Your shopping cart is empty is not displayed the displayed text is " + display_text);
         }
