@@ -153,7 +153,7 @@ public class LeanFtTest extends UnitTestClassBase {
             //if (!display_text.contains("CREATE ACCOUNT")) {
               if (!display_text.contains("Your AOS shopping cart is empty")) {
 
-             Assert.fail("Your shopping cart is empty is not displayed the displayed text is " + display_text);
+             Assert.fail("Your AOS shopping cart is empty is not displayed the displayed text is " + display_text);
         }
 
         browser.sync();
@@ -167,7 +167,7 @@ public class LeanFtTest extends UnitTestClassBase {
             catch (AssertionError e)
         {
             // Adds a step to the results report on failure.
-            Reporter.reportEvent("Shopping_Cart", "Validation Failed Your shopping cart is empty is not displayed", Status.Failed, e);
+            Reporter.reportEvent("Shopping_Cart", "Validation Failed Your AOS shopping cart is empty is not displayed", Status.Failed, e);
             throw e;
         }
  finally
