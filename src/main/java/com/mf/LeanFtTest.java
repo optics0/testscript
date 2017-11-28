@@ -115,64 +115,14 @@ public class LeanFtTest extends UnitTestClassBase {
 
         browser.sync();
 
-        browser.describe(Button.class, new ButtonDescription.Builder()
-                .buttonType("button")
-                .name("REGISTRATION")
-                .tagName("BUTTON").build()).click();
+            browser.describe(Button.class, new ButtonDescription.Builder()
+                    .buttonType("button")
+                    .name("REGISTRATION")
+                    .tagName("BUTTON").build()).click();
 
-        browser.sync();
-
-        String display_text = browser.describe(WebElement.class, new WebElementDescription.Builder()
-                .tagName("H3")
-                .xpath("//SECTION[@id=\"registerPage\"]/ARTICLE[1]/H3[1]").build()).getOuterText();
-
-
-        System.out.println("Displayed text is  " + display_text);
-
-
-
-            //if (!display_text.contains("CREATE ACCOUNT")) {
-              if (!display_text.contains("CREATE ACCOUNT")) {
-
-             Assert.fail("CREATE AN ACCOUNT is not displayed the displayed text is " + display_text);
-        }
-
-        browser.sync();
-
-        browser.describe(Link.class, new LinkDescription.Builder()
-                .accessibilityName("")
-                .innerText("2 ")
-                .role("link")
-                .tagName("A")
-                .index(1).build()).click();
-
-        browser.sync();
-
-        browser.describe(WebElement.class, new WebElementDescription.Builder()
-                .accessibilityName("")
-                .className("removeProduct iconCss iconX")
-                .innerText("")
-                .tagName("DIV")
-                .index(0).build()).click();
-
-        browser.sync();
-
-        browser.describe(Link.class, new LinkDescription.Builder()
-                .innerText("dvantage DEMO ")
-                .tagName("A").build()).click();
-
-    }
-            catch (AssertionError e)
-        {
-            // Adds a step to the results report on failure.
-            Reporter.reportEvent("Verify_Create_Account", "Validation Failed CREATE AN ACCOUNT is not displayed ", Status.Failed, e);
-            throw e;
-        }
- finally
-        {
             browser.sync();
 
-            browser.describe(Link.class, new LinkDescription.Builder()
+        browser.describe(Link.class, new LinkDescription.Builder()
                     .accessibilityName("")
                     .innerText("2 ")
                     .role("link")
@@ -188,6 +138,40 @@ public class LeanFtTest extends UnitTestClassBase {
                     .tagName("DIV")
                     .index(0).build()).click();
 
+            browser.sync();
+
+
+
+         String display_text = browser.describe(WebElement.class, new WebElementDescription.Builder()
+                    .className("roboto-bold ng-scope")
+                    .tagName("LABEL")
+                    .xpath("//DIV[@id=\"shoppingCart\"]/DIV[1]/LABEL[1]").build()).getOuterText();;
+
+
+        System.out.println("Displayed text is  " + display_text);
+
+            //if (!display_text.contains("CREATE ACCOUNT")) {
+              if (!display_text.contains("Your shopping cart is empty")) {
+
+             Assert.fail("Your shopping cart is empty is not displayed the displayed text is " + display_text);
+        }
+
+        browser.sync();
+
+
+        browser.describe(Link.class, new LinkDescription.Builder()
+                .innerText("dvantage DEMO ")
+                .tagName("A").build()).click();
+
+    }
+            catch (AssertionError e)
+        {
+            // Adds a step to the results report on failure.
+            Reporter.reportEvent("Shopping_Cart", "Validation Failed Your shopping cart is empty is not displayed", Status.Failed, e);
+            throw e;
+        }
+ finally
+        {
             browser.sync();
 
             browser.close();
