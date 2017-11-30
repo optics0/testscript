@@ -67,7 +67,6 @@ public class LeanFtTest extends UnitTestClassBase {
 
         browser.sync();
 
-
         browser.describe(Image.class, new ImageDescription.Builder()
                 .alt("")
                 .tagName("IMG")
