@@ -1,5 +1,6 @@
 package com.mf;
 
+import static java.lang.Thread.*;
 import static org.junit.Assert.*;
 
 import junit.framework.AssertionFailedError;
@@ -59,11 +60,15 @@ public class LeanFtTest extends UnitTestClassBase {
 
         browser.navigate("http://nimbusserver.aos.com:8000/#/");
 
+        Thread.sleep(9000);
+
         browser.sync();
 
         Link Speakers = browser.describe(Link.class, new LinkDescription.Builder()
                     .innerText("SPEAKERS Shop Now ")
                     .tagName("DIV").build());
+
+
 
         Speakers.click();
 
