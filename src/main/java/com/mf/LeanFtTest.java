@@ -61,17 +61,18 @@ public class LeanFtTest extends UnitTestClassBase {
 
         browser.sync();
 
-        browser.describe(Link.class, new LinkDescription.Builder()
-                .innerText("SPEAKERS Shop Now ")
-                .tagName("DIV").build()).click();
+        Link Speakers = browser.describe(Link.class, new LinkDescription.Builder()
+                    .innerText("SPEAKERS Shop Now ")
+                    .tagName("DIV").build());
+
+        Speakers.click();
 
         browser.sync();
 
-        browser.describe(Image.class, new ImageDescription.Builder()
-                .alt("")
-                .tagName("IMG")
-                .type(com.hp.lft.sdk.web.ImageType.NORMAL)
-                .index(3).build()).click();
+        browser.describe(WebElement.class, new WebElementDescription.Builder()
+                    .innerText("HP Roar Mini Wireless Speaker")
+                    .tagName("A").build()).click();
+
 
         browser.sync();
 
@@ -150,9 +151,9 @@ public class LeanFtTest extends UnitTestClassBase {
         System.out.println("Displayed text is  " + display_text);
 
             //if (!display_text.contains("CREATE ACCOUNT")) {
-              if (!display_text.contains("Your AOS shopping cart is empty")) {
+              if (!display_text.contains("Your shopping cart is empty")) {
 
-             Assert.fail("Your AOS shopping cart is empty is not displayed the displayed text is " + display_text);
+             Assert.fail("Your shopping cart is empty is not displayed the displayed text is " + display_text);
         }
 
         browser.sync();
@@ -166,7 +167,7 @@ public class LeanFtTest extends UnitTestClassBase {
             catch (AssertionError e)
         {
             // Adds a step to the results report on failure.
-            Reporter.reportEvent("Shopping_Cart", "Validation Failed Your AOS shopping cart is empty is not displayed", Status.Failed, e);
+            Reporter.reportEvent("Shopping_Cart", "Validation Failed Your shopping cart is empty is not displayed", Status.Failed, e);
             throw e;
         }
  finally
