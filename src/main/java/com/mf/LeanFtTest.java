@@ -53,14 +53,21 @@ public class LeanFtTest extends UnitTestClassBase {
     @Test
     public void test() throws Exception {
 
+
         Browser browser;
+
         browser = BrowserFactory.launch(BrowserType.CHROME);
 
         try {
 
-        browser.navigate("http://nimbusserver.aos.com:8000/#/");
 
-        Thread.sleep(9000);
+
+            browser.clearCache();
+
+            browser.navigate("http://nimbusserver.aos.com:8000/#/");
+
+         //   browser.close();
+
 
         browser.sync();
 
